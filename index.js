@@ -1,6 +1,6 @@
 var readlinesync= require('readline-sync');
 //Welcome message with username
-var username= readlinesync.question('Please enter your name= ');
+var username= readlinesync.question('Please enter your name = ');
 console.log("Hello, "+ username+ "!  "+ "Welcome to Cricket Quiz");
 console.log('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
 
@@ -58,6 +58,5 @@ for(i = 0; i < questionSet.length; i++){
 
 
 console.log('Your Final Score is '+score+ ' out of 10.');
-console.log('Well played '+username)
 console.log('Thank you for playing Quiz. Hope you enjoyed it.')
 
