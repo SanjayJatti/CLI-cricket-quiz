@@ -17,7 +17,7 @@ function play(question,options,answer){
     console.log(chalk.yellow("\n" + question));
   console.log(options);
 
-var userAnswer= readlinesync.question(question);
+var userAnswer= readlinesync.question();
 if(userAnswer.toUpperCase()===answer.toUpperCase()){
 
   console.log(chalk.greenBright('Hooray! you are right!'));
