@@ -1,62 +1,71 @@
 var readlinesync= require('readline-sync');
+var chalk =require('chalk');
 //Welcome message with username
-var username= readlinesync.question('Please enter your name = ');
-console.log("Hello, "+ username+ "!  "+ "Welcome to Cricket Quiz");
+var username= readlinesync.question(chalk.yellow('Please enter your name = '));
+
+console.log("Hello, "+ username+ "!  "+ "Welcome to Cricket Quiz\n");
+
+console.log(chalk.yellow("Rules of Quiz: "));
+console.log(chalk.green("\n Right Answer = 5 pts\n"))
+console.log(chalk.red("\n Wrong Answer = -2 pts\n"))
 console.log('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
 
 var score=0;
+var scores = [];
 
-function play(question,answer){
+function play(question,options,answer){
+    console.log(chalk.yellow("\n" + question));
+  console.log(options);
+
 var userAnswer= readlinesync.question(question);
 if(userAnswer.toUpperCase()===answer.toUpperCase()){
-  console.log('Hooray! you are right!');
-  score=score+1
-}else{
-  console.log('Oops! wrong answer!');
+
+  console.log(chalk.greenBright('Hooray! you are right!'));
+  score=score+5;
+   console.log("your current score is "+ score);
+}
+else{
+  console.log(chalk.red('Oops! wrong answer!'));
+    score=score-2;
+    console.log(chalk.yellow("your current score is "+ score));
 }
 console.log('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
 }
 
 //questions and answers 
 var questionSet=[
-  {question:'Que 01 Which cricket ground is called a Home of Cricket? ',
-  answer:'lords'
+  {"question":'Que 01 Which cricket venue is called a Home of Cricket? ',
+  "options": " a)Lords\n b)Vankhede\n c)Eden Garden\n d)Oval\n",
+  "answer":'a'
   },
-   {question:'Que 02 How many ICC ODI World cup has won by australia ? ',
-   answer:'5'
+   {"question":'Que 02 How many ICC ODI World cup has won by australia ? ',
+    "options": " a)3\n b)4\n c)5\n d)2\n",
+   "answer":'c'
   },
     {question:'Que 03 Which bowler has taken the highest number of wickets in Test Cricket? ',
-   answer:'shane warne'
+    "options": " a)Wasim Akram\n b)Murlitharan\n c)Shene Warne\n d)Anderson\n",
+   "answer":'c'
   },
-    {question:'Que 04 How many international centuries has scored by Sachin Tendulkar? ',
-   answer:'100'
+    {"question":'Que 04 How many international centuries has scored by Sachin Tendulkar? ',
+      "options":" a)99\n b)101\n c)50\n d)100\n",
+   "answer":'d'
   },
-    {question:'Que 05 What is the name given to the bilateral international Test cricket series played between England and Australia? ',
-  answer:'ashes'
+    {"question":'Que 05 What is the name given to the bilateral international Test cricket series played between England and Australia? ',
+    "options":" a)Ashes\n b)Border-Gavskar Trophy\n c)IPL\n d)Commenwealth\n",
+  "answer":'a'
   },
-  {question:'Que 06 In which city did Virender Sehwag score his first triple century in 2004? ',
-  answer:'multan'
-  },
-    {question:'Que 07 Who among these Australian players is called Mr Cricket?',
-  answer:'Michael Hussey'
-  },
-      {question:'Que 08 Which player has taken the highest IPL wickets? ',
-  answer:'Lasith Malinga'
-  },
-      {question:'Que 09 Which IPL team has won the most IPL tropies? ',
-  answer:'Mumbai Indians'
-  },
-      {question:'Que 10 Which player has IPL 2016 Orange Cap? ',
-  answer:'virat kohli'
-  }
-];
 
+];
+function Quiz() {
 for(i = 0; i < questionSet.length; i++){
   var currentQuestion = questionSet[i];
-  play(currentQuestion.question, currentQuestion.answer);
+  play(currentQuestion.question,currentQuestion.options, currentQuestion.answer);
+   console.log(".........................");
 }
+console.log(chalk.yellow('Your Final Score is '+score+ ' out of 25.'));
+console.log(chalk.red('Thank you for playing Quiz. Hope you enjoyed it.'))
+}
+Quiz();
 
 
-console.log('Your Final Score is '+score+ ' out of 10.');
-console.log('Thank you for playing Quiz. Hope you enjoyed it.')
 
